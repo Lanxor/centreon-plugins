@@ -115,6 +115,10 @@ runs:
         export RPM_SIGNING_KEY_ID="$RPM_GPG_SIGNING_KEY_ID"
         export NFPM_RPM_PASSPHRASE="$RPM_GPG_SIGNING_PASSPHRASE"
 
+        echo "VERSION=$VERSION"
+        echo "RELEASE=$RELEASE"
+        echo "DIST=$DIST"
+
         for FILE in ${{ inputs.nfpm_file_pattern }}; do
           DIRNAME=$(dirname $FILE)
           BASENAME=$(basename $FILE)
