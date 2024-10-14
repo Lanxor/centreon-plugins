@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - "dependencies/perl-json-path/**"
+      - ".github/workflows/perl-json-path.yml"
   push:
     branches:
       - develop
@@ -17,6 +18,7 @@ on:
       - "[2-9][0-9].[0-9][0-9].x"
     paths:
       - "dependencies/perl-json-path/**"
+      - ".github/workflows/perl-json-path.yml"
 
 jobs:
   get-environment:
@@ -118,7 +120,7 @@ jobs:
       # set condition to true if artifacts are needed
       - if: ${{ false }}
         name: Upload package artifacts
-        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+        uses: actions/upload-artifact@0b2256b8c012f0828dc542b3febcab082c67f72b # v4.3.4
         with:
           name: packages-${{ matrix.distrib }}
           path: ./*.${{ matrix.package_extension}}
