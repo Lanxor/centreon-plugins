@@ -579,10 +579,16 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
+      - name: Parse distrib name
+        id: parse-distrib-promote
+        uses: ./.github/actions/parse-distrib
+        with:
+          distrib: ${{ matrix.distrib }}
+
       - name: Promote ${{ matrix.distrib }} to stable
         uses: ./.github/actions/promote-to-stable
         with:
           artifactory_token: ${{ secrets.ARTIFACTORY_ACCESS_TOKEN }}
           module: perl-cpan-libraries
-          distrib: ${{ matrix.distrib }}
+          distrib: ${{ steps.parse-distrib-promote.outputs.package_distrib_name }}
           stability: ${{ needs.get-environment.outputs.stability }}
